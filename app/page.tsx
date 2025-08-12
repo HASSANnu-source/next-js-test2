@@ -17,10 +17,10 @@ const products = [
   },
   {
     id: 3,
-    title: "Asiklara yer yok",
+    title: "The Lord of the Rings 2",
     description: "Book 3 description",
     price: 50,
-    image: "/products/Asiklara-Yer-Yok.jpg"
+    image: "/products/The-Lord-of-the-Rings-2.jpg"
   },
   {
     id: 4,

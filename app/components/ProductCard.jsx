@@ -26,7 +26,7 @@ export default function ProductCard({ product }) {
             alt={product.title}
             fill
             className="object-cover object-center transition-transform duration-500 hover:scale-105"
-            quality={90}
+            quality={30}
           />
         </div>
         <h3 className="text-lg font-bold text-white line-clamp-2 min-h-[2.5rem] max-h-[3rem] leading-snug">
