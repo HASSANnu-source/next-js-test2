@@ -13,7 +13,7 @@ const products = [
     title: "Book 2",
     description: "Book 2 description",
     price: 40,
-    image: "/book.webp"
+    image: "/book2.webp"
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const products = [
     title: "Book 4",
     description: "Book 4 description",
     price: 60,
-    image: "/book.webp"
+    image: "/book2.webp"
   },
   {
     id: 5,
@@ -41,7 +41,7 @@ const products = [
     title: "Book 6",
     description: "Book 6 description",
     price: 80,
-    image: "/book.webp"
+    image: "/book2.webp"
   }
 ];
 
