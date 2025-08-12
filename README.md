@@ -1,3 +1,3 @@
 ## Test
 
-https://hassannu-source.github.io/next-js2/
+https://next-js-test2-58od.vercel.app/
