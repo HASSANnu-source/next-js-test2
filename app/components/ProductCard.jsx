@@ -20,26 +20,28 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-700">
-      <div className="relative w-full" style={{ aspectRatio: '1/1', maxHeight: '300px' }}>
+    <div
+     className="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-700">
+      <div className="relative w-full" style={{ aspectRatio: '1/1'}}>
         <Image
           src={product.image}
           alt={product.title}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
-          className="transition-transform duration-500 hover:scale-105"
+          sizes="(max-width: 768px) 20vw, (max-width: 1200px) 100vw, 15vw"
+          className="object-cover object-center transition-transform duration-500 hover:scale-105"
         />
       </div>
 
-      <div className="p-4">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="text-lg font-bold text-white line-clamp-1">{product.title}</h3>
-          <div className="bg-blue-900 backdrop-blur-sm rounded-full px-4 py-1 text-lg font-medium text-white whitespace-nowrap">
-            ${product.price}
-          </div>
+      <div className="flex flex-col gap-3 p-4 items-start">
+        <h3 className="text-lg font-bold text-white ">
+          {product.title}
+        </h3>
+        <p className="text-gray-300 text-sm line-clamp-2">
+          {product.description}
+        </p>
+        <div className="bg-blue-900 rounded-full px-4 py-1 text-lg font-medium text-white">
+          ${product.price}
         </div>
-        <p className="text-gray-300 text-sm mb-4 line-clamp-2 h-12">{product.description}</p>
-
         {quantityInCart > 0 ? (
           <div className="flex items-center gap-2">
             <button 
@@ -67,9 +69,9 @@ export default function ProductCard({ product }) {
         ) : (
           <button 
             onClick={handleAddToCart}
-            className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95"
+            className="text-xs sm:text-base sm:gap-2 w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all duration-300 flex items-center justify-center transform hover:scale-105 active:scale-95"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
             </svg>
             Add to Cart
