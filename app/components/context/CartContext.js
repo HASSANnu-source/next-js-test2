@@ -33,11 +33,11 @@ export function CartProvider({ children }) {
           if (item.quantity > 1) {
             return { ...item, quantity: item.quantity - 1 };
           } else {
-            return null; // حذف محصول اگه تعداد به 0 برسه
+            return null;
           }
         }
         return item;
-      }).filter(Boolean); // حذف آیتم‌های null
+      }).filter(Boolean);
     });
   };
 
@@ -61,4 +61,8 @@ export function CartProvider({ children }) {
 
 export function useCart() {
   return useContext(CartContext);
+}
+
+export function toPersianNumber(number) {
+  return new Intl.NumberFormat('fa-IR').format(number);
 }

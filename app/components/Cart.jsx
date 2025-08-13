@@ -1,9 +1,11 @@
 'use client'
 
+import Link from 'next/link';
 import { useCart } from './context/CartContext';
+import toPersianNumber from '@/app/components/utils/format'
 
 export default function Cart() {
-  const { cartItems, removeFromCart, decreaseQuantity, cartCount } = useCart();
+  const { cartItems, addToCart, removeFromCart, decreaseQuantity, cartCount } = useCart();
 
   const totalAmount = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 
@@ -14,9 +16,9 @@ export default function Cart() {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
-          <h2 className="text-xl font-bold text-white">Shopping Cart ({cartCount})</h2>
+          <h2 className="text-xl font-bold text-white">سبد خرید ({toPersianNumber(cartCount)})</h2>
         </div>
-        <p className="text-gray-400">Your cart is empty</p>
+        <p className="text-gray-400">سبد خرید شما خالی است.</p>
       </div>
     );
   }
@@ -27,33 +29,43 @@ export default function Cart() {
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
-        <h2 className="text-xl font-bold text-white">Shopping Cart ({cartCount})</h2>
+        <h2 className="text-xl font-bold text-white">سبد خرید ({toPersianNumber(cartCount)})</h2>
       </div>
 
       <div className="space-y-4 mb-6">
         {cartItems.map(item => (
           <div key={item.id} className="flex items-center justify-between p-4 bg-gray-700 rounded-lg border border-gray-600">
             <div className="flex items-center gap-4">
-              <img 
-                src={item.image} 
-                alt={item.title} 
-                className="w-16 h-16 object-cover rounded-lg"
-              />
+              <Link href={`/products/${item.id}`} passHref>
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-16 h-16 object-cover rounded-lg"
+                />
+              </Link>
               <div>
                 <h3 className="font-semibold text-white">{item.title}</h3>
                 <div className="flex items-center gap-2 flex-wrap">
                   <p className="text-gray-300 text-sm">
-                    ${item.price} × {item.quantity}
+                    {toPersianNumber(item.price)} × {toPersianNumber(item.quantity)}
                   </p>
                   <span className="text-gray-500">=</span>
                   <p className="text-green-400 font-medium">
-                    ${(item.price * item.quantity).toFixed(2)}
+                    {toPersianNumber(item.price * item.quantity)} تومان
                   </p>
                 </div>
               </div>
             </div>
             
             <div className="flex items-center gap-2">
+              <button 
+                onClick={() => addToCart(item)}
+                className="bg-gray-600 hover:bg-gray-500 text-white p-2 rounded-lg transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
+                </svg>
+              </button>
               <button 
                 onClick={() => decreaseQuantity(item.id)}
                 className="bg-gray-600 hover:bg-gray-500 text-white p-2 rounded-lg transition-colors"
@@ -78,12 +90,12 @@ export default function Cart() {
 
       <div className="border-t border-gray-600 pt-4">
         <div className="flex justify-between items-center">
-          <span className="text-lg font-semibold text-white">Total:</span>
-          <span className="text-2xl font-bold text-green-400">${totalAmount.toFixed(2)}</span>
+          <span className="text-lg font-semibold text-white">مجموع:</span>
+          <span className="text-2xl font-bold text-green-400">{toPersianNumber(totalAmount)} تومان</span>
         </div>
         
         <button className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-semibold transition-colors">
-          Checkout
+          پرداخت
         </button>
       </div>
     </div>
