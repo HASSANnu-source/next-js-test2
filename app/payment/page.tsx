@@ -4,17 +4,20 @@ export const metadata = {
 
 export default function Payment() {
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
-      <div className="max-w-3xl w-full">
+    <div className="min-h-screen bg-black flex flex-col items-center  justify-center p-4">
+      <h1 className="text-2xl md:text-4xl font-bold text-white font-serif m-8 text-center">
+        YOU GOT RICK ROLLED
+      </h1>
+      <div className="scale-50 origin-top max-w-4xl w-full rounded-xl overflow-hidden">
         <video
-          className="w-full h-auto"
+          className="w-full h-auto object-cover"
           autoPlay
           playsInline
           loop
           controls={false}
         >
           <source src="/Rick-Roll.mp4" type="video/mp4" />
-          مرورگر شما از تگ ویدیو پشتیبانی نمی‌کنه.
+          مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
         </video>
       </div>
     </div>

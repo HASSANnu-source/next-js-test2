@@ -4,30 +4,27 @@ import Link from 'next/link';
 import { useCart } from './context/CartContext';
 import { toPersianNumber } from '@/app/components/utils/price'
 import { calculateFinalPrice } from '@/app/components/utils/price';
-import { useState } from 'react'; // ✅ اضافه شد
+import { useState } from 'react';
 
 export default function Cart() {
   const { cartItems, addToCart, decreaseQuantity, clearCart, cartCount } = useCart();
-  const [showConfirmModal, setShowConfirmModal] = useState(false); // ✅ state برای نمایش modal
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   
   const totalAmount = cartItems.reduce((total, item) => {
     const finalPrice = calculateFinalPrice(item);
     return total + (finalPrice * item.quantity);
   }, 0);
 
-  // ✅ تابع برای نمایش modal
   const handleClearCartClick = () => {
     if (cartItems.length === 0) return;
     setShowConfirmModal(true);
   };
 
-  // ✅ تابع برای تأیید خالی کردن سبد
   const handleConfirmClear = () => {
     clearCart();
     setShowConfirmModal(false);
   };
 
-  // ✅ تابع برای لغو عملیات
   const handleCancelClear = () => {
     setShowConfirmModal(false);
   };
@@ -177,8 +174,8 @@ export default function Cart() {
         </Link>
       </div>
       {showConfirmModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-2xl border border-gray-700 p-6 max-w-md w-full shadow-2xl">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-800 rounded-2xl border border-gray-700 p-6 max-w-md w-full">
             <div className="text-center">
               <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-900 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-400" viewBox="0 0 20 20" fill="currentColor">
