@@ -62,7 +62,3 @@ export function CartProvider({ children }) {
 export function useCart() {
   return useContext(CartContext);
 }
-
-export function toPersianNumber(number) {
-  return new Intl.NumberFormat('fa-IR').format(number);
-}

@@ -15,7 +15,7 @@ export default function Header() {
           </Link>
           
           <nav className="flex items-center gap-6">
-            <Link href="/" passHref className="relative flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+            <Link href="/" passHref className="hidden sm:flex relative items-center gap-2 text-gray-300 hover:text-white transition-colors">
               خانه
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
