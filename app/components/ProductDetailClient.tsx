@@ -1,9 +1,10 @@
 'use client';
 
-import { useCart } from '@/app/components/context/CartContext';
+import useCart from '@/app/components/context/CartContext';
 import { toPersianNumber } from '@/app/components/utils/price';
 import { Product } from '@/app/components/data/products';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ProductDetailClient({ product }: { product: Product }) {
   const { addToCart, decreaseQuantity, cartItems } = useCart();
@@ -52,11 +53,13 @@ export default function ProductDetailClient({ product }: { product: Product }) {
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-1">
           <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-700 sticky top-16">
-            <div className="relative">
-              <img
+            <div className="relative" style={{ aspectRatio: '5/8' }}>
+              <Image
                 src={product.image}
                 alt={product.title}
-                className="w-full h-auto object-cover"
+                fill
+                className="object-cover"
+                quality={80}
               />
             </div>
           </div>

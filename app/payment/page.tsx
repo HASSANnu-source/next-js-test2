@@ -15,8 +15,9 @@ export default function Payment() {
           playsInline
           loop
           controls={false}
+          preload="auto"
         >
-          <source src="/Rick-Roll.mp4" type="video/mp4" />
+          <source src="/payment.mp4" type="video/mp4" />
           مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
         </video>
       </div>

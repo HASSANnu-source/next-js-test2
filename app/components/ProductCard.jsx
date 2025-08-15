@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useCart } from './context/CartContext';
+import useCart from './context/CartContext';
 import { formatPrice, toPersianNumber } from '@/app/components/utils/price';
 import Image from 'next/image';
 

@@ -1,13 +1,13 @@
 'use client'
 
 import Link from 'next/link';
-import { useCart } from './context/CartContext';
+import useCart from './context/CartContext';
 import { toPersianNumber } from '@/app/components/utils/price'
 import { calculateFinalPrice } from '@/app/components/utils/price';
 import { useState } from 'react';
 
 export default function Cart() {
-  const { cartItems, addToCart, decreaseQuantity, clearCart, cartCount } = useCart();
+  const { cartItems, addToCart, decreaseQuantity, removeFromCart, clearCart, cartCount } = useCart();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   
   const totalAmount = cartItems.reduce((total, item) => {
@@ -122,22 +122,26 @@ export default function Cart() {
                 </span>
                 <button 
                   onClick={() => decreaseQuantity(item.id)}
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
-                    item.quantity > 1 
-                      ? 'bg-gray-600 hover:bg-gray-500 text-white'
-                      : 'bg-red-600 hover:bg-red-500 text-white'
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors bg-gray-600 hover:bg-gray-500 text-white ${
+                    item.quantity < 2 && 'hidden'
                   }`}
-                  aria-label={item.quantity > 1 ? "کاهش تعداد" : "حذف از سبد"}
+                  aria-label={"کاهش تعداد"}
                 >
-                  {item.quantity > 1 ? (
+                  {item.quantity > 1 &&
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clipRule="evenodd" />
                     </svg>
-                  ) : (
+                  }
+                </button>
+                <button 
+                  onClick={() => removeFromCart(item.id)}
+                  className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors bg-red-600 hover:bg-red-500 text-white"
+              
+                  aria-label={"حذف از سبد"}
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                     </svg>
-                  )}
                 </button>
               </div>
             </div>

@@ -59,6 +59,6 @@ export function CartProvider({ children }) {
   );
 }
 
-export function useCart() {
+export default function useCart() {
   return useContext(CartContext);
 }
